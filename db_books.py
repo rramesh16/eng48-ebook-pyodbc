@@ -24,3 +24,12 @@ class EbooksBooks(MSDBConnnection):
             record = result.fetchone()
             print(
                 f" ID: {record.BookID} , Title: {record.Title} , Author: {record.Author}, Published: {record.Date_Published}")
+
+    def add_book(self):
+        ebook_title = input('Please enter the title of the book:')
+        ebook_author = input('Please enter the name of the author:')
+        ebook_published = input('Please enter the published date in the format YYYY-MM-DD')
+        query = f"INSERT INTO Books(Title, Author, Date_Published) VALUES ('{ebook_title}', '{ebook_author}', '{ebook_published}')"
+        result = self.cursor.execute(query)
+        self.cursor.commit()
+        print('All done. Thank you!')
